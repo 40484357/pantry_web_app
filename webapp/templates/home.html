@@ -1,0 +1,213 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block fill_home %} #F0E299 {% endblock %} 
+
+{% block content %}
+<div class="row">
+    <div class="header" >
+        <div class="header-titles" style="padding-bottom: 0;">
+            Recipes Reccomended to you
+        </div>
+        <div class="progress-bar">        
+        </div>
+    </div>
+    <div class="container">
+        <button class="handle left-handle"><div class="text">&#8249;</div></button>
+        <div class="slider" id="slider">
+            <div class="slider-object" id="slider_element_0">
+                <div class="recipe-image">
+                    <img src="{{ url_for('static', filename='recipe_image.png')}}" alt="" class="recpie-img">
+                </div>
+                <div class="recipe-info">
+                    <div class="recipe-title">
+                        Hearty Chicken Soup
+                    </div>
+                </div>
+            </div>
+            <div class="slider-object" id="slider_element_1">
+                <div class="recipe-image">
+                    <img src="{{ url_for('static', filename='recipe_image.png')}}" alt="" class="recpie-img">
+                </div>
+                <div class="recipe-info">
+                    <div class="recipe-title">
+                        Hearty Chicken Soup
+                    </div>
+                </div>
+            </div>
+            <div class="slider-object" id="slider_element_2">
+                <div class="recipe-image">
+                    <img src="{{ url_for('static', filename='recipe_image.png')}}" alt="" class="recpie-img">
+                </div>
+                <div class="recipe-info">
+                    <div class="recipe-title">
+                        Hearty Chicken Soup
+                    </div>
+                </div>
+            </div>
+            <div class="slider-object" id="slider_element_3">
+                <div class="recipe-image">
+                    <img src="{{ url_for('static', filename='recipe_image.png')}}" alt="" class="recpie-img">
+                </div>
+                <div class="recipe-info">
+                    <div class="recipe-title">
+                        Hearty Chicken Soup
+                    </div>
+                </div>
+            </div>
+            <div class="slider-object" id="slider_element_4">
+                <div class="recipe-image">
+                    <img src="{{ url_for('static', filename='recipe_image.png')}}" alt="" class="recpie-img">
+                </div>
+                <div class="recipe-info">
+                    <div class="recipe-title">
+                        Hearty Chicken Soup
+                    </div>
+                </div>
+            </div>
+            <div class="slider-object" id="slider_element_5">
+                <div class="recipe-image">
+                    <img src="{{ url_for('static', filename='recipe_image.png')}}" alt="" class="recpie-img">
+                </div>
+                <div class="recipe-info">
+                    <div class="recipe-title">
+                        Hearty Chicken Soup
+                    </div>
+                </div>
+            </div>
+            <div class="slider-object" id="slider_element_6">
+                <div class="recipe-image">
+                    <img src="{{ url_for('static', filename='recipe_image.png')}}" alt="" class="recpie-img">
+                </div>
+                <div class="recipe-info">
+                    <div class="recipe-title">
+                        Hearty Chicken Soup
+                    </div>
+                </div>
+            </div>
+            <div class="slider-object" id="slider_element_7">
+                <div class="recipe-image">
+                    <img src="{{ url_for('static', filename='recipe_image.png')}}" alt="" class="recpie-img">
+                </div>
+                <div class="recipe-info">
+                    <div class="recipe-title">
+                        Hearty Chicken Soup
+                    </div>
+                </div>
+            </div>
+            <div class="slider-object" id="slider_element_8">
+                <div class="recipe-image">
+                    <img src="{{ url_for('static', filename='recipe_image.png')}}" alt="" class="recpie-img">
+                </div>
+                <div class="recipe-info">
+                    <div class="recipe-title">
+                        Hearty Chicken Soup
+                    </div>
+                </div>
+            </div>
+            <div class="slider-object" id="slider_element_9">
+                <div class="recipe-image">
+                    <img src="{{ url_for('static', filename='recipe_image.png')}}" alt="" class="recpie-img">
+                </div>
+                <div class="recipe-info">
+                    <div class="recipe-title">
+                        Hearty Chicken Soup
+                    </div>
+                </div>
+            </div>
+            <div class="slider-object" id="slider_element_10">
+                <div class="recipe-image">
+                    <img src="{{ url_for('static', filename='recipe_image.png')}}" alt="" class="recpie-img">
+                </div>
+                <div class="recipe-info">
+                    <div class="recipe-title">
+                        Hearty Chicken Soup
+                    </div>
+                </div>
+            </div>
+            <div class="slider-object" id="slider_element_11">
+                <div class="recipe-image">
+                    <img src="{{ url_for('static', filename='recipe_image.png')}}" alt="" class="recpie-img">
+                </div>
+                <div class="recipe-info">
+                    <div class="recipe-title">
+                        Hearty Chicken Soup
+                    </div>
+                </div>
+            </div>
+    </div>
+    <button class="handle right-handle"><div class="text">&#8250;</div></button>
+</div>
+<div class="table-headers">
+        <div class="table-column" id="food_item_column">
+            <div class="header-titles" >Food Item</div>
+            {% for food_items in user.food_items  | sort(attribute='expiry') %}
+                {% if loop.index <= 5 %}
+                    <div class="items" id="foods{{food_items.id}}">{{ food_items.food_title }}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="table-column">
+            <div class="header-titles">Amount</div>
+            {% for food_items in user.food_items | sort(attribute='expiry') %}
+                {% if loop.index <= 4 %}
+                    <div class="items">{{ food_items.amount }} {{food_items.unit}}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="table-column">
+            <div class="header-titles">Expiry Date</div>
+            {% for food_items in user.food_items | sort(attribute='expiry') %}
+                {% if loop.index <= 4 %}
+                    <div class="items">{{ food_items.expiry }}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="table-column" id="recipe_column">
+            <div class="header-titles">Days until expiry</div>
+            {% for timeDiff in dateDifference %}
+                {% if loop.index <= 4 %}
+                    <div class="items">
+                    <div style="display: flex;">
+                        {{ timeDiff }} days remaining
+                    </div></div>
+                {% endif %}
+            {% endfor %}
+
+<script>
+window.onload = () => {
+
+const food_item_column = document.getElementById('food_item_column')
+const childDivs = food_item_column.getElementsByTagName('div')
+const sliderContainer = document.getElementById('slider')
+const sliderObjects = sliderContainer.getElementsByClassName('slider-object')
+console.log(childDivs)
+
+for(i = 1; i< childDivs.length; i++){
+    var childDivR = childDivs[i]
+    var string = childDivR.innerHTML
+    extractItem(string)
+}
+
+console.log(sliderObjects)
+
+for(i = 0; i < sliderObjects.length; i++){
+    let object = sliderObjects[i]
+    object.addEventListener('click', (event) =>{
+        let element
+        if(event.target.matches('.slider-object')){
+            element = element
+            console.log(element)
+        } else {
+            element = event.target.closest('.slider-object')
+            console.log(element)
+        }
+        if(element!=null){
+            let id = parseInt(element.id)
+            location.href = '/recipe'
+            localStorage.setItem('recipeID', element.id)
+        }
+    })
+}
+
+
+}
+</script>
+{% endblock %}

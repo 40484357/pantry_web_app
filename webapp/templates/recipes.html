@@ -1,0 +1,351 @@
+{% extends "base.html" %} {% block title %}Changed{% endblock %} {% block fill_recipe %} #F0E299 {% endblock %} 
+
+{% block content %}
+<div class="body-content" style="display: flex; flex-direction: column;">
+    <div class="search-header" style="width: 100%; margin-top: 2em; display: flex; justify-content: center;">
+        <input placeholder="Search for a recipe" type="search" style="width: 50%; border: none; outline: none; border-radius: 10px; padding: 1em;" id="searchBar">
+        <button class="submit-search-button" id="search-button">search</button>
+    </div>
+    <div class="recipe-container" id="recipe-container">
+        <div class="header" style="font-size: 18px; font-weight: bold;">
+            Recipes catered for you
+        </div>
+        <div class="your-recipes"  id="your_recipes">
+            <div class="recipes-cards" >
+                <div class="recipe-image" style="">
+                    <img src="" alt="" class="recipes-image">
+                </div>
+                <div class="recipe-information" >
+                    
+                </div>
+            </div>
+            <div class="recipes-cards" >
+                <div class="recipe-image" style="">
+                    <img src="" alt="" class="recipes-image">
+                </div>
+                <div class="recipe-information" >
+                    
+                </div>
+            </div>
+            <div class="recipes-cards" >
+                <div class="recipe-image" style="">
+                    <img src="" alt="" class="recipes-image">
+                </div>
+                <div class="recipe-information" >
+                    
+                </div>
+            </div>
+            <div class="recipes-cards" >
+                <div class="recipe-image" style="">
+                    <img src="" alt="" class="recipes-image">
+                </div>
+                <div class="recipe-information" >
+                    
+                </div>
+            </div>
+            <div class="recipes-cards" >
+                <div class="recipe-image" style="">
+                    <img src="" alt="" class="recipes-image">
+                </div>
+                <div class="recipe-information" >
+                    
+                </div>
+            </div>
+            <div class="recipes-cards" >
+                <div class="recipe-image" style="">
+                    <img src="" alt="" class="recipes-image">
+                </div>
+                <div class="recipe-information" >
+                    
+                </div>
+            </div>
+        </div>
+        <div class="header" style="font-size: 18px; font-weight: bold;">
+            Recipes of the week
+        </div>
+        <div class="your-recipes" style="display: flex;  justify-content:space-between; width: 100%;  padding: 0 2em 2em 2em; " id="recipes_of_the_week">
+            <div class="recipes-cards" >
+                <div class="recipe-image" style="">
+                    <img src="" alt="" class="recipes-image">
+                </div>
+                <div class="recipe-information" >
+                    
+                </div>
+            </div>
+            <div class="recipes-cards" >
+                <div class="recipe-image" style="">
+                    <img src="" alt="" class="recipes-image">
+                </div>
+                <div class="recipe-information" >
+                    
+                </div>
+            </div>
+            <div class="recipes-cards" >
+                <div class="recipe-image" style="">
+                    <img src="" alt="" class="recipes-image">
+                </div>
+                <div class="recipe-information" >
+                    
+                </div>
+            </div>
+            <div class="recipes-cards" >
+                <div class="recipe-image" style="">
+                    <img src="" alt="" class="recipes-image">
+                </div>
+                <div class="recipe-information" >
+                    
+                </div>
+            </div>
+            <div class="recipes-cards" >
+                <div class="recipe-image" style="">
+                    <img src="" alt="" class="recipes-image">
+                </div>
+                <div class="recipe-information" >
+                    
+                </div>
+            </div>
+            <div class="recipes-cards" >
+                <div class="recipe-image" style="">
+                    <img src="" alt="" class="recipes-image">
+                </div>
+                <div class="recipe-information" >
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    let food_itemsArray = []
+
+    {% for food_items in user.food_items | sort(attribute='expiry') %}
+        var getFoods = {{ food_items.food_title | tojson }}    
+        food_itemsArray.push(getFoods)
+    {% endfor %}
+
+    let recipesLoaded =[]
+
+    let apiKey = '&apiKey=b415d08676204db09cd86431dbbe3bfd'
+    let randomRecipeArray = []
+    
+    window.onload = () => {
+
+    let recipe_cards = document.getElementsByClassName('recipes-cards')
+
+    for(i = 0; i<recipe_cards.length; i++){
+        recipe_cards[i].addEventListener('click', (event) =>{
+            location.href = '/recipe'
+            localStorage.setItem('recipeID', event.target.id) 
+        })
+    }
+        
+    if (recipesLoaded.length < 8){
+    food_itemsArray.forEach(item => {
+        const url = `https://api.spoonacular.com/recipes/complexSearch?instructionsRequired=true&number=6&query=${item}${apiKey}`
+        
+
+        fetch(url)
+        .then(response => response.json())
+        .then((jsonData)=>{
+            data = jsonData.results
+            if(data.length>0){
+            recipesLoaded.push(data)
+            }
+
+            loadRecipes()
+         })
+        })
+    }
+
+    const randomRecipeUrl = `https://api.spoonacular.com/recipes/random?limitLicense=true&number=6${apiKey}`
+
+    
+
+    if(sessionStorage.getItem('randomRecipeArray') != null){
+        randomRecipeArray = JSON.parse(sessionStorage.getItem('randomRecipeArray'))
+        console.log(randomRecipeArray)
+    }
+
+    if(randomRecipeArray.length < 6){
+    fetch(randomRecipeUrl)
+    .then(response => response.json())
+    .then((jsonData)=>{
+        data = jsonData.recipes
+        data.forEach(recipe => {
+            randomRecipeArray.push(recipe)
+        })
+        sessionStorage.setItem('randomRecipeArray', JSON.stringify(randomRecipeArray))
+        loadRandomRecipes()
+    })
+    } else {
+        loadRandomRecipes()
+    }
+}
+
+    function loadRecipes(){
+        const your_recipes = document.getElementById('your_recipes')
+        let childDivs = your_recipes.getElementsByClassName('recipes-cards')
+        let recipeArray = []
+        for(i=0; i < recipesLoaded.length; i++){
+            let recipeItems = recipesLoaded[i]
+            let amountToPush = Math.ceil(recipeItems.length/food_itemsArray.length)
+            for(x = 0; x < amountToPush; x++){
+                recipeArray.push(recipeItems[x])
+            }
+            
+        }
+
+        let uniqueRecipes = []
+
+        const unique = recipeArray.filter(element => {
+            const ifDuplicate = uniqueRecipes.includes(element.title)
+            if(!ifDuplicate){
+                uniqueRecipes.push(element)
+                
+                return true
+            }
+            return false
+        })
+        for(i = 0; i < childDivs.length; i++){
+            let generatedHTML = ""
+            generatedHTML+=
+            `
+            <div class="recipe-image" style="">
+                <img src="${uniqueRecipes[i].image}" alt="" class="recipes-image" id='${uniqueRecipes[i].id}'>
+            </div>
+            <div class="recipe-information" id='${uniqueRecipes[i].id}'>
+                ${uniqueRecipes[i].title}
+            </div>
+            `
+            childDivs[i].id = `${uniqueRecipes[i].id}`
+            childDivs[i].innerHTML = generatedHTML
+            
+        }
+    }
+
+   function loadRandomRecipes(){
+    const recipesOfTheWeek = document.getElementById('recipes_of_the_week')
+    let childDivs = recipesOfTheWeek.getElementsByClassName('recipes-cards')
+    for(i = 0; i < childDivs.length; i++){
+        let generatedHTML = ""
+        generatedHTML +=
+        `
+        <div class="recipe-image" style="">
+            <img src="${randomRecipeArray[i].image}" alt="" class="recipes-image" id='${randomRecipeArray[i].id}'>
+        </div>
+        <div class="recipe-information" id='${randomRecipeArray[i].id}'>
+            ${randomRecipeArray[i].title}
+        </div>           
+        `
+        childDivs[i].id = `${randomRecipeArray[i].id}`
+        childDivs[i].innerHTML = generatedHTML
+    }
+   }
+
+const searchBar = document.getElementById('searchBar')
+
+const searchButton = document.getElementById('search-button')
+const recipeContainer = document.getElementById('recipe-container')
+
+searchButton.addEventListener('click', () =>{
+    let query = searchBar.value
+    const url = `https://api.spoonacular.com/recipes/complexSearch?instructionsRequired=true&query=${query}${apiKey}`
+    const containerHeaderHTML = `<div class="header" style="font-size: 18px; font-weight: bold;">
+           ${query} recipes
+        </div>`
+   
+    
+
+    fetch(url)
+    .then(response => response.json())
+    .then((jsonData) =>{
+        results = jsonData.results
+        if(results.length <= 6){
+            
+            recipeContainer.innerHTML= ''
+            let generatedHTML = ""
+            results.forEach(result => {
+                
+                generatedHTML +=
+                `
+            <div class="recipes-cards" id='${result.id}'>
+                <div class="recipe-image" id='${result.id}'>
+                    <img src="${result.image}" alt="" class="recipes-image" id='${result.id}'>
+                </div>
+                <div class="recipe-information" id='${result.id}'>
+                    ${result.title}
+                </div>
+            </div>
+                `
+
+            })
+
+            let container = `<div class="your-recipes"  id="your_recipes"> ${generatedHTML} </div>`
+            recipeContainer.innerHTML = containerHeaderHTML + container
+        } else {
+            numberOfContainers = Math.ceil(results.length/6)
+            recipeContainer.innerHTML = containerHeaderHTML
+            for(i = 0; i<numberOfContainers; i++){
+                let container = document.createElement('div')
+                container.classList.add('searched-recipes')
+                container.id = 'your_recipes'
+                container.innerHTML=""
+                let index = i * 6
+                
+                let generatedHTML =""
+                if(index < 6){
+                for(index; index < 6; index++){
+                    generatedHTML +=
+                    `
+                    <div class="recipes-cards" id='${results[index].id}'>
+                    <div class="recipe-image" id='${results[index].id}'>
+                    <img src="${results[index].image}" alt="" class="recipes-image" id='${results[index].id}'>
+                    </div>
+                    <div class="recipe-information" id='${results[index].id}'>
+                    ${results[index].title}
+                    </div>
+                    </div>
+                    `
+                }
+                } else {
+                    for(index; index < results.length; index++){
+                    generatedHTML +=
+                    `
+                    <div class="recipes-cards" id='${results[index].id}'>
+                    <div class="recipe-image" id='${results[index].id}'>
+                    <img src="${results[index].image}" alt="" class="recipes-image" id='${results[index].id}'>
+                    </div>
+                    <div class="recipe-information" id='${results[index].id}'>
+                    ${results[index].title}
+                    </div>
+                    </div>
+                    `
+                }
+                }
+                container.innerHTML = generatedHTML
+                recipeContainer.appendChild(container)
+            } 
+        }
+
+        let recipes = document.getElementsByClassName('recipes-cards')
+        
+        for(i = 0; i < recipes.length; i++){
+            recipes[i].addEventListener('click', (event) => {
+                location.href = '/recipe'
+                localStorage.setItem('recipeID', event.target.id) 
+            })
+        }
+
+        searchButton.innerHTML = 'clear search'
+        searchButton.addEventListener('click', () =>{
+            location.href='/recipes'
+        })
+        
+    })
+})
+
+    
+</script>  
+{% endblock %}

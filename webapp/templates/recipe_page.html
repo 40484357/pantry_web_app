@@ -1,0 +1,389 @@
+{% extends "base.html" %} {% block title %}recipes{% endblock %} {% block fill_recipe %} #F0E299 {% endblock %} 
+
+{% block content %}
+<header stlye="display: flex; gap: 1em;">
+    <div style=" margin-left: 1em; margin-right: 0;">
+        <a href="/recipes" style="color: white; text-decoration: none;">return to recipes</a>
+    </div>
+    <div style="color: white; margin-left: 1em; margin-right: 0; font-size: 32px; margin-bottom: 0.2em; ">
+        &#8250;
+    </div>
+    <div style="color: white; margin-left: 1em; margin-right: 0;" id = 'recipe_header_title'>
+        Lamb chop fry
+    </div>
+</header>
+<div class="body-container"  style="display: flex; flex-direction: column;">
+    <div class="container-header" style="width: 100%;  display: flex;" id="header_container">
+        <div class="image_holder" style="width: 20%; margin: 1em; display: flex; flex-direction: column;">
+            <img src="" alt="" style="width: 100%;">
+            <form action="" method="post" target="formFrame" id='add-to-fave-form'>
+                <button type="submit"  style="max-width: fit-content; margin-top: 1em; border: none; border-radius: 5px; background-color: #462D56; color: white; display: flex; align-items: center; justify-content: flex-start; padding: 0.5em 1em; cursor: pointer;" id="add-to-favourites-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="13" viewBox="0 0 7 9" fill="none" style="margin-right: 1em;">
+                        <path d="M0.291748 8.625V1.29167C0.291748 1.03958 0.381581 0.823708 0.561248 0.644042C0.740609 0.464681 0.956331 0.375 1.20841 0.375H5.79175C6.04383 0.375 6.25971 0.464681 6.43937 0.644042C6.61873 0.823708 6.70841 1.03958 6.70841 1.29167V8.625L3.50008 7.25L0.291748 8.625ZM1.20841 7.22708L3.50008 6.24167L5.79175 7.22708V1.29167H1.20841V7.22708ZM1.20841 1.29167H5.79175H3.50008H1.20841Z" fill="white"/>
+                    </svg>
+                    Add to favourites
+                </button>
+            </form>
+        </div>
+        <div class="recipe_information_container"  style="display: flex; flex-direction: column; width: 80%;">
+            <div class="recipe_title" style="color: black; font-size: 20px; font-weight: bold; margin: 1rem;">
+                Lamb Chop Fry
+            </div>
+            <div class="recipe_text" style="margin: 0 1em; padding-right: 1em; font-size: 16px;">
+                Stuffed Chicken Breast is a <b>gluten free, primal, and ketogenic</b> side dish. This recipe makes 4 servings with <b>298 calories</b>, <b>22g of protein</b>, and <b>22g of fat</b> each. For <b>$1.42 per serving</b>, this recipe <b>covers 13%</b> of your daily requirements of vitamins and minerals. 4 people were glad they tried this recipe. Head to the store and pick up green onions, chicken breast, cream cheese, and a few other things to make it today. From preparation to the plate, this recipe takes about <b>27 minutes</b>. It is brought to you by Pink When. Taking all factors into account, this recipe <b>earns a spoonacular score of 68%</b>, which is pretty good. If you like this recipe, you might also like recipes such as <a href=\"https://spoonacular.com/recipes/stuffed-chicken-breast-147486\">Stuffed Chicken Breast</a>, <a href=\"https://spoonacular.com/recipes/stuffed-chicken-breast-373051\">Stuffed Chicken Breast</a>, and <a href=\"https://spoonacular.com/recipes/boars-stuffed-chicken-breast-472951\">B.O.A.R.S Stuffed Chicken Breast</a>.
+
+            </div>
+            <div class="recipe_icons" style="display: flex; margin-left: 0.5em; margin-top: 0.5em;">
+                <div class="cook_time" style="display: flex; align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+                        <g filter="url(#filter0_d_29_179)">
+                        <rect x="7" y="3" width="36" height="36" rx="3" fill="#F0E299"/>
+                        <path d="M24.6933 31.6323C30.4862 31.6323 35.1782 27.2335 35.1782 21.8026C35.1782 16.3718 30.4862 11.973 24.6933 11.973C18.9004 11.973 14.2084 16.3718 14.2084 21.8026C14.2084 27.2335 18.9004 31.6323 24.6933 31.6323ZM24.6933 9.51562C31.9017 9.51562 37.7995 15.0448 37.7995 21.8026C37.7995 28.5605 31.9017 34.0897 24.6933 34.0897C17.4456 34.0897 11.5872 28.5605 11.5872 21.8026C11.5872 15.0448 17.4849 9.51562 24.6933 9.51562ZM25.3486 23.0314H23.3827V15.6591H25.3486V20.8934L30.1979 18.2763L31.1809 19.8736L25.3486 23.0314Z" fill="#462D56"/>
+                        </g>
+                        <defs>
+                        <filter id="filter0_d_29_179" x="0" y="0" width="50" height="50" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="4"/>
+                        <feGaussianBlur stdDeviation="3.5"/>
+                        <feComposite in2="hardAlpha" operator="out"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_29_179"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_29_179" result="shape"/>
+                        </filter>
+                        </defs>
+                    </svg>
+                    Ready in 27 minutes
+                </div>
+                <div class="serves" style="display: flex; margin-left: 1em; align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+                        <g filter="url(#filter0_d_34_290)">
+                        <rect x="7" y="3" width="36" height="36" rx="3" fill="#F0E299"/>
+                        <path d="M19.7027 22.2929L14.433 17.0358C13.4908 16.0909 12.9617 14.8109 12.9617 13.4765C12.9617 12.1421 13.4908 10.8622 14.433 9.91728L23.2619 18.7211L19.7027 22.2929ZM28.2298 20.0165L26.381 21.8653L35.0339 30.5182L33.2605 32.2915L24.6076 23.6386L15.9548 32.2915L14.1814 30.5182L26.4564 18.2432C25.5635 16.3189 26.1923 13.6149 28.192 11.6152C30.5942 9.2004 34.0403 8.74763 35.8765 10.5839C37.7253 12.4327 37.2725 15.8787 34.8578 18.2809C32.8581 20.2806 30.154 20.9095 28.2298 20.0165V20.0165Z" fill="#462D56"/>
+                        </g>
+                        <defs>
+                        <filter id="filter0_d_34_290" x="0" y="0" width="50" height="50" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="4"/>
+                        <feGaussianBlur stdDeviation="3.5"/>
+                        <feComposite in2="hardAlpha" operator="out"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_34_290"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_34_290" result="shape"/>
+                        </filter>
+                        </defs>
+                    </svg>
+                    Serves: 4
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container_content" style="width: 100%;  display: flex; justify-content: center;">
+        <div class="ingredients" style="display: flex; flex-direction: column; margin-left: 1em; width: 20%; padding-bottom: 1em;" >
+            <div class="ingredients_header" style="font-weight: bold; width: 100%; display: flex; justify-content: center;">
+                Ingredients
+            </div>
+            <div class="form_container" style="display: flex; width: 100%" >
+                <div class="form" >
+                    <form method="POST"  class="ingredients_form" id="ingredients_form">
+                        <!-- <li>
+                        <input type="checkbox" id="food_name" name="food_name" value="food_name">
+                        <label for="food_name">4 tbsp grated parmesan</label><div>missing</div>
+                        </li>
+                        <li>
+                        <input type="checkbox" id="food_name1" name="food_name1" value="food_name">
+                        <label for="food_name1">5tbsp mayonnaise</label><div>missing</div>
+                        </li>
+                        <li>
+                        <input type="checkbox" id="food_name3" name="food_name3" value="food_name">
+                        <label for="food_name3">1 lemon, zested</label><div>missing</div>
+                        </li>
+                        <li>
+                        <input type="checkbox" id="food_name4" name="food_name4" value="food_name">
+                        <label for="food_name4">2 tsp finely chopped fresh herbs or 1/2 tsp mixed dried herbs</label><div>missing</div>
+                        </li>
+                        <li>
+                        <input type="checkbox" id="food_name5" name="food_name5" value="food_name">
+                        <label for="food_name5">50g panko breadcrumbs</label><div>missing</div>
+                        </li>
+                        <li>
+                        <input type="checkbox" id="food_name6" name="food_name6" value="food_name">
+                        <label for="food_name6">2 boneless, skinless chicken breasts</label><div>missing</div>
+                        </li> -->
+                        <li>
+                        <button type="submit" class="ingredients_form_submit" id="add_to_button">Add to shopping</button>
+                        </li>
+                    </form>
+            </div>
+        </div>
+        
+        </div>
+        <div class="method" style="display: flex; flex-direction: column; margin-left: 2em; width: 80%;">
+            <div class="method_header" style="font-weight: bold;">
+                Method
+            </div>
+            <div class="method_container" id="recipe_method_container">
+                <!-- <div class="method_item">
+                    <div class="step">
+                        Step 1
+                    </div>
+                    <div class="instruction">
+                        Wash and Pat dry chicken breast.
+                    </div>
+                </div>
+                <div class="method_item">
+                    <div class="step">
+                        Step 2
+                    </div>
+                    <div class="instruction">
+                        Cut chicken lengthwise, careful not to cut all the way through.
+                    </div>
+                </div>
+                <div class="method_item">
+                    <div class="step">
+                        Step 3
+                    </div>
+                    <div class="instruction">
+                        Stuff chicken breast with cream cheese and onion.
+                    </div>
+                </div>
+                <div class="method_item">
+                    <div class="step">
+                        Step 4
+                    </div>
+                    <div class="instruction">
+                        Firmly press the chicken breast closed.
+                    </div>
+                </div>
+                <div class="method_item">
+                    <div class="step">
+                        Step 5
+                    </div>
+                    <div class="instruction">
+                        Spray chicken with olive oil based cooking spray.
+                    </div>
+                </div>
+                <div class="method_item">
+                    <div class="step" >
+                        Step 6
+                    </div>
+                    <div class="instruction">
+                        Rib chicken breast with your favorite chicken seasonings.
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <iframe name="formFrame" style="display: none;">
+        
+    </iframe>
+      
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+          crossorigin="anonymous"></script>
+
+    <script>
+
+    let recipesArray = []
+
+    {% for favourite_recipes in user.favourite_recipes %}
+        var recipeid = {{ favourite_recipes.recipe_id }}
+        recipesArray.push(recipeid)
+    {% endfor %}  
+      
+
+        window.onload = () => {
+
+            const id = localStorage.getItem('recipeID')
+            const apiKey = 'b415d08676204db09cd86431dbbe3bfd'
+            const Url = `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${apiKey}`
+
+            fetch(Url)
+            .then(response => response.json())
+            .then((jsonData) => {
+                buildRecipe(jsonData)
+                console.log(jsonData)
+            })
+        }
+
+       function buildRecipe(jsonData){
+            const header_container = document.getElementById('header_container')
+            const ingredients_form = document.getElementById('ingredients_form')
+            const method_container = document.getElementById('recipe_method_container')
+            const recipe_header_title = document.getElementById('recipe_header_title')
+
+            recipe_header_title.innerHTML =  jsonData.title
+
+            let generatedHTML = ""
+
+            generatedHTML +=
+            `
+            <div class="image_holder" style="width: 20%; margin: 1em; display: flex; flex-direction: column;">
+            <img src="${jsonData.image}" alt="" style="width: 100%;">
+            <form action="/favourite_recipe/${jsonData.id}" method="post" target="formFrame" id='add-to-fave-form'>
+                <button type="submit"  style="max-width: fit-content; margin-top: 1em; border: none; border-radius: 5px; background-color: #462D56; color: white; display: flex; align-items: center; justify-content: flex-start; padding: 0.5em 1em; cursor: pointer;" id="add-to-favourites-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="13" viewBox="0 0 7 9" fill="none" style="margin-right: 1em;">
+                        <path d="M0.291748 8.625V1.29167C0.291748 1.03958 0.381581 0.823708 0.561248 0.644042C0.740609 0.464681 0.956331 0.375 1.20841 0.375H5.79175C6.04383 0.375 6.25971 0.464681 6.43937 0.644042C6.61873 0.823708 6.70841 1.03958 6.70841 1.29167V8.625L3.50008 7.25L0.291748 8.625ZM1.20841 7.22708L3.50008 6.24167L5.79175 7.22708V1.29167H1.20841V7.22708ZM1.20841 1.29167H5.79175H3.50008H1.20841Z" fill="white"/>
+                    </svg>
+                    Add to favourites
+                </button>
+            </form>
+        </div>
+        <div class="recipe_information_container"  style="display: flex; flex-direction: column; width: 80%;">
+            <div class="recipe_title" style="color: black; font-size: 20px; font-weight: bold; margin: 1rem;">
+                ${jsonData.title}
+            </div>
+            <div class="recipe_text" style="margin: 0 1em; padding-right: 1em; font-size: 16px;">
+                ${jsonData.summary}
+            </div>
+            <div class="recipe_icons" style="display: flex; margin-left: 0.5em; margin-top: 0.5em;">
+                <div class="cook_time" style="display: flex; align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+                        <g filter="url(#filter0_d_29_179)">
+                        <rect x="7" y="3" width="36" height="36" rx="3" fill="#F0E299"/>
+                        <path d="M24.6933 31.6323C30.4862 31.6323 35.1782 27.2335 35.1782 21.8026C35.1782 16.3718 30.4862 11.973 24.6933 11.973C18.9004 11.973 14.2084 16.3718 14.2084 21.8026C14.2084 27.2335 18.9004 31.6323 24.6933 31.6323ZM24.6933 9.51562C31.9017 9.51562 37.7995 15.0448 37.7995 21.8026C37.7995 28.5605 31.9017 34.0897 24.6933 34.0897C17.4456 34.0897 11.5872 28.5605 11.5872 21.8026C11.5872 15.0448 17.4849 9.51562 24.6933 9.51562ZM25.3486 23.0314H23.3827V15.6591H25.3486V20.8934L30.1979 18.2763L31.1809 19.8736L25.3486 23.0314Z" fill="#462D56"/>
+                        </g>
+                        <defs>
+                        <filter id="filter0_d_29_179" x="0" y="0" width="50" height="50" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="4"/>
+                        <feGaussianBlur stdDeviation="3.5"/>
+                        <feComposite in2="hardAlpha" operator="out"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_29_179"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_29_179" result="shape"/>
+                        </filter>
+                        </defs>
+                    </svg>
+                    Ready in ${jsonData.readyInMinutes} Minutes
+                </div>
+                <div class="serves" style="display: flex; margin-left: 1em; align-items: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+                        <g filter="url(#filter0_d_34_290)">
+                        <rect x="7" y="3" width="36" height="36" rx="3" fill="#F0E299"/>
+                        <path d="M19.7027 22.2929L14.433 17.0358C13.4908 16.0909 12.9617 14.8109 12.9617 13.4765C12.9617 12.1421 13.4908 10.8622 14.433 9.91728L23.2619 18.7211L19.7027 22.2929ZM28.2298 20.0165L26.381 21.8653L35.0339 30.5182L33.2605 32.2915L24.6076 23.6386L15.9548 32.2915L14.1814 30.5182L26.4564 18.2432C25.5635 16.3189 26.1923 13.6149 28.192 11.6152C30.5942 9.2004 34.0403 8.74763 35.8765 10.5839C37.7253 12.4327 37.2725 15.8787 34.8578 18.2809C32.8581 20.2806 30.154 20.9095 28.2298 20.0165V20.0165Z" fill="#462D56"/>
+                        </g>
+                        <defs>
+                        <filter id="filter0_d_34_290" x="0" y="0" width="50" height="50" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dy="4"/>
+                        <feGaussianBlur stdDeviation="3.5"/>
+                        <feComposite in2="hardAlpha" operator="out"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_34_290"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_34_290" result="shape"/>
+                        </filter>
+                        </defs>
+                    </svg>
+                    Serves: ${jsonData.servings}
+                </div>
+            </div>
+        </div>
+            `
+
+            header_container.innerHTML = generatedHTML
+
+            let ingredients = []
+            let ingredientName = []
+            jsonData.extendedIngredients.forEach(ingredient =>{
+                ingredients.push(ingredient.original)
+                ingredientName.push(ingredient.name)
+            })
+
+            for(i=0; i<ingredients.length; i++){
+                let listItem = document.createElement('li')
+                let inputItem = document.createElement('input')
+                inputItem.type = 'checkbox'
+                let ingredient_name = ingredientName[i]
+                inputItem.id = 'ingredient'
+                inputItem.name = 'ingredient'
+                inputItem.value = ingredient_name
+                let label = document.createElement('label')
+                label.for = 'ingredient'
+                label.innerHTML = ingredients[i]
+
+                listItem.appendChild(inputItem)
+                listItem.appendChild(label)
+                ingredients_form.appendChild(listItem)
+            }
+
+            let methodContent = []
+            jsonData.analyzedInstructions.forEach(element =>{
+                element.steps.forEach(step => {
+                    methodContent.push(step)
+                })
+            })
+
+            
+            methodContent.forEach(step =>{
+                let stepContainer = document.createElement('div')
+                stepContainer.classList.add('step-container')
+                let divTitle = document.createElement('div')
+                divTitle.classList.add('method-step')
+                divTitle.innerHTML = 'Step ' + step.number
+                let contentContainer = document.createElement('div')
+                contentContainer.classList.add('method-instruction')
+                contentContainer.innerHTML = step.step
+                stepContainer.appendChild(divTitle)
+                stepContainer.appendChild(contentContainer)
+                method_container.appendChild(stepContainer)
+            })
+
+            const addToButton = document.getElementById('add-to-favourites-btn')
+            console.log(recipesArray)
+            recipesArray.forEach(recipe => {
+                let current_id = localStorage.getItem('recipeID')
+                console.log(current_id)
+                console.log(recipe)
+                if(recipe = current_id){
+                    addToButton.style.backgroundColor = '#F0E299'
+                    addToButton.style.color = '#6B5579'
+                    addToButton.style.fontWeight = 'bold'
+                    addToButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 11 11" fill="none">
+                                            <path d="M7.93671 3.81633L6.18847 2.12517L7.05485 1.27211L7.93671 2.12517L10.1181 0L11 0.853061L7.93671 3.81633ZM0 11V0.22449H5.56962C5.36334 0.52381 5.20863 0.810757 5.10549 1.08533C5.00234 1.35951 4.95077 1.6712 4.95077 2.02041C4.95077 2.73878 5.18532 3.37234 5.6544 3.92109C6.1239 4.46984 6.71449 4.81406 7.42616 4.95374C7.66339 4.98367 7.86967 4.99864 8.04501 4.99864C8.22035 4.99864 8.42663 4.98367 8.66385 4.95374V11L4.33193 9.20408L0 11Z" fill="#462D56"/>
+                                            </svg> Saved`
+                    addToButton.disabled = true
+                } else {
+                    addToButton.addEventListener('click', () => {
+                    addToButton.style.backgroundColor = '#F0E299'
+                    addToButton.style.color = '#6B5579'
+                    addToButton.style.fontWeight = 'bold'
+                    addToButton.innerHTML= `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 11 11" fill="none">
+                                            <path d="M7.93671 3.81633L6.18847 2.12517L7.05485 1.27211L7.93671 2.12517L10.1181 0L11 0.853061L7.93671 3.81633ZM0 11V0.22449H5.56962C5.36334 0.52381 5.20863 0.810757 5.10549 1.08533C5.00234 1.35951 4.95077 1.6712 4.95077 2.02041C4.95077 2.73878 5.18532 3.37234 5.6544 3.92109C6.1239 4.46984 6.71449 4.81406 7.42616 4.95374C7.66339 4.98367 7.86967 4.99864 8.04501 4.99864C8.22035 4.99864 8.42663 4.98367 8.66385 4.95374V11L4.33193 9.20408L0 11Z" fill="#462D56"/>
+                                            </svg> Saved`
+                    })
+                }
+            })
+
+            
+              
+            
+            
+        }
+
+        ingredients_form.addEventListener('submit', (event)=> {
+            event.preventDefault()
+            
+            
+            $.ajax({
+                type: 'POST',
+                url: '/recipe',
+                data: $('[name=ingredient]').serialize(),
+                dataType: 'json',
+            })
+
+            const button = document.getElementById('add_to_button')
+            button.innerHTML = 'Added to list'
+            button.style.backgroundColor = '#62CF47'
+        })
+
+        
+        
+
+
+    </script>
+
+{% endblock %}

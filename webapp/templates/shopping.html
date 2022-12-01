@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% block title %}Shopping{% endblock %} {% block fill_shopping %} #F0E299 {% endblock %} 
+
+{% block content %}
+
+<header stlye="display: flex; gap: 1em;">
+    <div style="color: white; margin-left: 1em; margin-right: 0;" id = 'recipe_header_title'>
+        Your Shopping List
+    </div>
+</header>
+<div class="body-container" style="flex-direction: column;">
+    {% for item in user.shopping_list %}
+    <form method="POST" class="shopping-form">
+        <div class="shopping-item">
+            <button class="remove-list"><a href="{{ url_for('delete', item=item.id)}}" style="color: white; text-decoration: none;">remove</a></button>
+            <div class="food-item-title-shopping">
+                <input type="text" id="food_title" name="food_title" class="shopping_text" value="{{ item.item }}" disabled="true">
+            </div>
+            <div class="food-item-amount-shopping">
+                <label for="amount">Enter Amount</label>
+                <input type="text" name="amount" class="shopping_text" id="amount" style="width:20%;">
+                <select name="unit" class="select-shopping-amount" id="unit">
+                    <option value="g">g</option>
+                    <option value="kg">kg</option>
+                    <option value="ml">ml</option>
+                    <option value="l">l</option>
+                    <option value="oz">oz</option>
+                    <option value="piece">piece</option>
+                    <option value="unit">unit</option>
+                </select>
+            </div>
+            <div class="food-item-expiry-shopping" id="expiry">
+                <label for="expiry">Add Expiry Date</label>
+                <input type="date" id="add-expiry" name="expiry">
+            </div>
+            <button class="add-pantry" type="submit" id="{{item.id}}">Add to pantry</button>
+        </div>
+    </form>
+    {% endfor %}
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+          crossorigin="anonymous"></script>
+<script>
+
+    var add_pantry = document.getElementsByClassName('add-pantry')
+
+    
+
+    Array.from(add_pantry).forEach(function(element){
+        
+        element.addEventListener('click', (element) => {
+            let id = parseInt(element.target.id)
+            console.log(id)
+            const request = new XMLHttpRequest()
+            request.open('POST', `/data_after_post/${id}`)
+            request.send();
+    })})
+
+
+</script>
+
+{% endblock %}

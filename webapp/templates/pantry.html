@@ -1,0 +1,278 @@
+{% extends "base.html" %}{% block title %}Pantry{% endblock %} {% block fill_pantry %} #F0E299 {% endblock %} 
+
+{% block content %}
+<div class="table">
+    <div class="search-panel pantry-headers">
+        <button type="button" class='add-food-button search-panel-button' id="open_add_food_overlay">Add Food</button>
+        <button type="button" class='add-food-button search-panel-button' id="open_edit_food_overlay">Edit Food</button>
+        <button class="search-panel-button">
+            Sort
+        </button>
+        <button class="search-panel-button">
+            Filter
+        </button>
+        
+        <div class="search-bar" data-search-bar>
+            <svg width="25" height="25" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="15" fill="#DDD6E3"/>
+                <path d="M13.2594 7.70673C14.3216 7.7067 15.3615 8.01124 16.2558 8.58419C17.1501 9.15715 17.8611 9.97448 18.3046 10.9392C18.7481 11.904 18.9054 12.9756 18.7579 14.027C18.6103 15.0784 18.1641 16.0654 17.4722 16.871L22.2932 21.6896L21.6893 22.2932L16.8675 17.4738C16.1874 18.055 15.3769 18.4634 14.5049 18.6641C13.633 18.8648 12.7254 18.8519 11.8595 18.6265C10.9936 18.401 10.195 17.9698 9.53179 17.3694C8.86858 16.769 8.36036 16.0173 8.05043 15.1784C7.7405 14.3394 7.63803 13.438 7.75175 12.5509C7.86548 11.6638 8.19203 10.8173 8.70358 10.0835C9.21514 9.34974 9.89656 8.75042 10.6898 8.33658C11.483 7.92274 12.3646 7.70666 13.2594 7.70673V7.70673ZM13.2594 8.56049C12.0134 8.56049 10.8184 9.05521 9.93736 9.93582C9.05631 10.8164 8.56134 12.0108 8.56134 13.2562C8.56134 14.5016 9.05631 15.6959 9.93736 16.5765C10.8184 17.4571 12.0134 17.9519 13.2594 17.9519C14.5054 17.9519 15.7003 17.4571 16.5814 16.5765C17.4624 15.6959 17.9574 14.5016 17.9574 13.2562C17.9574 12.0108 17.4624 10.8164 16.5814 9.93582C15.7003 9.05521 14.5054 8.56049 13.2594 8.56049Z" fill="#333"/>
+            </svg>
+            <input placeholder="Type to search..." type="search" id="food-search">
+        </div>
+    </div>
+    <div class="table-headers">
+        <div class="table-column" id="food_item_column">
+            <div class="header-titles" >Food Item</div>
+            {% for food_items in user.food_items | sort(attribute='expiry') %}
+                <div class="items" id="foods{{food_items.id}}" >{{ food_items.food_title  }}</div>
+            {% endfor %}
+        </div>
+        <div class="table-column">
+            <div class="header-titles">Amount</div>
+            {% for food_items in user.food_items | sort(attribute='expiry') %}
+                <div class="items" >{{ food_items.amount }} {{ food_items.unit  }}</div>
+            {% endfor %}
+        </div>
+        <div class="table-column">
+            <div class="header-titles">Expiry Date</div>
+            {% for food_items in user.food_items | sort(attribute='expiry') %}
+                <div class="items" >{{ food_items.expiry  }}</div>
+            {% endfor %}
+        </div>
+        <div class="table-column">
+            <div class="header-titles">Days until expiry</div>
+            {% for timeDiff in dateDifference %}
+            <div class="items" >
+                    {{ timeDiff }} days remaining                
+            </div>
+            {% endfor %}
+        </div>
+        <div class="table-column" id="recipe_column">
+            <div class="header-titles">Recipes used in</div>
+            {% for food_items in user.food_items %}
+                <div class="items" ><div class="span-wrapper" >
+                    <span style="line-height: 1.5; white-space: nowrap; word-break: normal; font-weight: 500;" id="example_recipe{{loop.index}}">
+                        
+                    </span>
+                </div> 
+                <div style="display: flex;" >
+                        <div role="button" tabindex="0" class="side-button" id="open_recipe{{loop.index}}">
+                            <svg viewbox = "0 0 16 16" style="width: 14px; height: 14px; display: block; fill: rgba(255, 255, 255, 0.443); flex-shrink: 0; backface-visibility: hidden;">
+                                <path d="M2.1416 14.4492H13.8516C15.3281 14.4492 16.0938 13.6904 16.0938 12.2344V3.9082C16.0938 2.45215 15.3281 1.69336 13.8516 1.69336H2.1416C0.665039 1.69336 -0.100586 2.44531 -0.100586 3.9082V12.2344C-0.100586 13.6904 0.665039 14.4492 2.1416 14.4492ZM2.22363 13.1094C1.58789 13.1094 1.23926 12.7812 1.23926 12.1182V4.02441C1.23926 3.36133 1.58789 3.02637 2.22363 3.02637H13.7695C14.3984 3.02637 14.7539 3.36133 14.7539 4.02441V12.1182C14.7539 12.7812 14.3984 13.1094 13.7695 13.1094H2.22363ZM8.51953 12.1113H13.2158C13.5986 12.1113 13.7559 11.9541 13.7559 11.5645V4.57812C13.7559 4.18848 13.5986 4.02441 13.2158 4.02441H8.51953C8.13672 4.02441 7.98633 4.18848 7.98633 4.57812V11.5645C7.98633 11.9541 8.13672 12.1113 8.51953 12.1113Z">
+                                </path>
+                            </svg>
+                            <div style="font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255, 255, 255, 0.443); margin-left: 4px;">Open</div>
+                        </div>  
+                </div></div>
+            {% endfor %}
+            
+        </div>
+    </div>       
+</div>
+<div class="add-food-overlay hidden" id="add_food_overlay">
+    <div class="add-food-header">
+        <h2>Add Food</h2>
+        <button type="button" class="close-overlay" id="close-overlay">&times;</button>
+    </div>
+    <div class="add-food-search" data-search-bar>
+        <input placeholder="Type to search..." type="search" id="add-food-search" >
+        <button class="submit-search-button" id="submit-search">search</button>
+    </div>
+    <div class="search-results" id="search-results">
+    
+    </div>
+    <div class="quick-add">
+        <div class="header">
+            <h3>Add your favourites</h3>
+        </div>
+        <div class="favourite-item">
+            <button class="check" role="checkbox">
+            </button>
+            <div class="item-title">
+                <p>this is an item</p>
+            </div>
+        </div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+</div>
+<div class="add-food-overlay hidden" id="edit_food_overlay">
+    <div class="add-food-header ">
+        <h2>Edit Food</h2>
+        <button class="close-overlay" id="close-edit-overlay">&times;</button>
+    </div>
+    <div class="search-results">
+        {% for food_items in user.food_items %}
+      
+        <form action = "{{ url_for('update_pantry')}} "method="POST" class="update-pantry-form" id={{food_items.id}} data-id={{food_items.id}}>
+            <div class="food-item">
+                <div class="food-item-title" id="food_title" >
+                    <div class="food-item-title-div">
+                        {{food_items.food_title}}
+                    </div>
+                    <input type="text" name="food_title" id="food_title" value={{food_items.id}} class="hidden">
+                </div>
+                <div class="food-item-amount">
+                    <label >Enter Amount</label>
+                    <input type="text" id="amount" name="amount" value={{food_items.amount}}>
+                </div>
+                <div class="food-item-expiry" id="expiry">
+                    <label >Edit Expiry Date</label>
+                    <input type="date" id="add-expiry" name="expiry" value={{food_items.expiry}}>
+                </div>
+                <button class="add_button" type="submit" id="update-button" data-id={{food_items.id}}>Update</button>
+                <div class="delete-button" id="delete-button" data-id={{food_items.id}}><svg xmlns="http://www.w3.org/2000/svg" width="37" height="35" viewBox="0 0 37 35" fill="none">
+                    <rect width="37" height="35" rx="4" fill="#B14E4E"/>
+                    <path d="M26.1911 14.6562L25.134 16.5484L12.3109 8.89219L13.368 7L16.5817 8.91406L18.0194 8.50937L22.5969 11.2438L22.988 12.7422L26.1911 14.6562ZM11 25.6922V12.5672H16.3597L23.6857 16.9422V25.6922C23.6857 26.2723 23.463 26.8287 23.0665 27.239C22.6699 27.6492 22.1322 27.8797 21.5714 27.8797H13.1143C12.5535 27.8797 12.0158 27.6492 11.6193 27.239C11.2228 26.8287 11 26.2723 11 25.6922Z" fill="white"/>
+                    </svg>
+                </div>
+            </div>
+        </form>
+        
+        
+        {% endfor %}
+    </div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.1.min.js"
+  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+  crossorigin="anonymous"></script>
+
+<script>
+const open_add_food_overlay = document.getElementById('open_add_food_overlay')
+const open_edit_food_overlay = document.getElementById('open_edit_food_overlay')
+let delete_buttons = document.getElementsByClassName('delete-button')
+
+open_add_food_overlay.addEventListener('click', () => {
+    const add_overlay = document.getElementById('add_food_overlay')
+    add_overlay.classList.remove('hidden')
+    open_add_food_overlay.classList.add('active')
+})
+
+open_edit_food_overlay.addEventListener('click', () => {
+    const overlay = document.getElementById('edit_food_overlay')
+    overlay.classList.remove('hidden')
+    open_edit_food_overlay.classList.add('active')
+})
+
+const close_overlay = document.getElementById('close-overlay')
+const close_edit_overlay = document.getElementById('close-edit-overlay')
+
+close_overlay.addEventListener('click', () => {
+    const add_overlay = document.getElementById('add_food_overlay')
+    add_overlay.classList.add('hidden')
+    open_add_food_overlay.classList.remove('active')
+    
+   
+})
+
+close_edit_overlay.addEventListener('click', () => {
+    const edit_overlay = document.getElementById('edit_food_overlay')
+    edit_overlay.classList.add('hidden')
+    open_edit_food_overlay.classList.remove('active')
+})
+
+Array.from(delete_buttons).forEach(function(element){
+    element.addEventListener('click', (element) =>{
+        
+        let button
+        if(element.target.matches('.delete-button')){
+            button = button
+        } else {
+            button = element.target.closest('.delete-button')
+        }
+        if(button!=null){
+            let id = parseInt(button.dataset.id)
+            console.log(id)
+            const request = new XMLHttpRequest()
+            request.open('POST', `/delete_pantry/${id}`)
+            request.send();
+            location.href = '/pantry'
+        }
+        
+        
+    })
+})
+
+const food_search = document.getElementById('food-search')
+
+let foodItemNameArray = []
+let divItems = document.getElementsByClassName('items')
+
+{% for food_items in user.food_items | sort(attribute='expiry') %}
+    var getFoods = {{ food_items.food_title | tojson }}
+    foodItemNameArray.push(getFoods)
+{% endfor %}
+
+food_search.addEventListener('keyup', (e) =>{
+    let value = e.target.value
+    
+    for(i = 0; i < divItems.length; i++){
+        if (divItems[i].dataset.title.includes(value) === false){
+            divItems[i].classList.add('hidden')
+        } else {
+            divItems[i].classList.remove('hidden')
+        }
+        console.log(divItems[i])
+    }
+})
+
+window.onload = () => {
+
+    
+const searchFieldElement = document.getElementById("add-food-search")
+const submitSearch = document.getElementById("submit-search")
+submitSearch.addEventListener('click', () => {
+    searchFood(searchFieldElement.value)
+})
+const food_item_column = document.getElementById('food_item_column')
+const childDivs = food_item_column.getElementsByTagName('div')
+
+for(i = 1; i < childDivs.length; i++){
+    var childDiv = childDivs[i]
+    var childDivTitle = childDiv.innerHTML
+    searchRecipes(childDivTitle)
+    }
+
+let open_recipe = document.getElementsByClassName('side-button')
+
+for(i=0; i <open_recipe.length; i++){
+    open_recipe[i].addEventListener('click', (event) =>{
+        let button
+        if(event.target.matches(".side-button")){
+            button = event.target
+        } else {
+            button = event.target.closest(".button")
+        }
+        if(button!=null){
+            location.href='/recipe'
+            localStorage.setItem('recipeID', button.id)
+        }
+    })
+}
+
+
+
+for(i = 0; i < foodItemNameArray.length; i++){
+    let amountIndex = i + foodItemNameArray.length
+    let expiryIndex = amountIndex + foodItemNameArray.length
+    let daysToIndex = expiryIndex + foodItemNameArray.length
+    let recipesIndex = daysToIndex + foodItemNameArray.length
+    divItems[i].dataset.title = foodItemNameArray[i]
+    divItems[amountIndex].dataset.title = foodItemNameArray[i]
+    divItems[expiryIndex].dataset.title = foodItemNameArray[i]
+    divItems[daysToIndex].dataset.title = foodItemNameArray[i]
+    divItems[recipesIndex].dataset.title = foodItemNameArray[i]
+
+}
+
+
+
+}
+
+
+</script>
+{% endblock %}
