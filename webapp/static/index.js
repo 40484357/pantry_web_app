@@ -8,7 +8,7 @@ document.addEventListener("click", e => {
     handle = e.target.closest(".handle")
    }
    if(handle != null) onHandleClick(handle)
- 
+
 })
 
 
@@ -66,7 +66,7 @@ function onHandleClick(handle){
         progressBar.children[sliderIndex -1].classList.add("active")
         }
     }
-   
+
     if(handle.classList.contains("right-handle")){
         if(sliderIndex + 1 >= ProgressBarItemCount){
             slider.style.setProperty("--slider-index", 0)
@@ -181,7 +181,7 @@ function renderResults(data){
         add_food_button.type = 'submit'
         add_food_button.innerHTML = 'Add'
 
-        
+
         food_title.appendChild(food_item_text)
         food_item_amount.appendChild(label)
         food_item_amount.appendChild(inputAmount)
@@ -193,9 +193,9 @@ function renderResults(data){
         food_items.appendChild(food_item_amount)
         food_items.appendChild(food_item_expiry)
         food_items.appendChild(add_food_button)
-        
+
         food_items_form.appendChild(food_items)
-        console.log(food_item_text.value)
+
 
         list.appendChild(food_items_form)
     })
@@ -203,23 +203,36 @@ function renderResults(data){
 
 function extractItem(string){
     let query
+
     if(string.search("chicken") > 1)
     {
         query = 'chicken'
         getRecipes(query)
-        
-    }else {
+
+    }else if (string.search('pork') > 1) {
+        query = 'pork'
+        getRecipes(query)
+    } else {
         getRecipes(string)
-        
     }
 }
 
 let recommendedRecipes = []
-
+let sliderArray = []
 async function getRecipes(recipeQueries){
+    const food_item_column = document.getElementById('food_item_column')
+    const childDivs = food_item_column.getElementsByTagName('div')
+    let i = childDivs.length - 1
+    let number
+    if(i === 1){
+        number = 10
+    } else if (i === 2){
+        number = 6
+    } else {
+        number = 4
+    }
 
-    const url = `https://api.spoonacular.com/recipes/complexSearch?instructionsRequired=true&number=10&query=${recipeQueries}&apiKey=562382aaab84443dbc1270bd67c313a7`
-    
+    const url = `https://api.spoonacular.com/recipes/complexSearch?instructionsRequired=true&number=${number}&query=${recipeQueries}&apiKey=e3bdb5fc824a4563a6edfb6876152599`
 
     const response = await fetch(url)
     const data = await response.json();
@@ -228,32 +241,35 @@ async function getRecipes(recipeQueries){
         recommendedRecipes.push(data.results)
     }
 
-    if(recommendedRecipes.length >= 0){
-        console.log(recommendedRecipes)
-        renderSlider()
+    if(recommendedRecipes.length >= i){
+        sliderArrayGenerator()
     }
+}
 
-    
+function sliderArrayGenerator(){
+        let i = recommendedRecipes.length -1
 
+        for (x=0; x<recommendedRecipes.length; x++){
+        recommendedRecipes[x].forEach(item => {
+            sliderArray.push(item)
+        })
+        }
+        if(x = i){
+            renderSlider()
+        }
 }
 
 function renderSlider(){
-    let sliderArray = []
-    for (i=0; i<recommendedRecipes.length; i++){
-        recommendedRecipes[i].forEach(item => {
-            console.log(sliderArray)
-            sliderArray.push(item)
-        })
-    }
 
-    if(sliderArray.length < 12){
+    if(sliderArray.length < 12 && sliderArray.length > 6){
+
         arrayLength = sliderArray.length
         let difference = 12 - arrayLength
         for(x = 0; x<arrayLength; x++){
             let generatedHTML = '';
             generatedHTML +=
-       
-       
+
+
         `
         <div class="recipe-image">
                     <img src="${sliderArray[x].image}" alt="" class="recpie-img">
@@ -266,14 +282,14 @@ function renderSlider(){
         `
         const sliderElement = document.getElementById('slider_element_' + x)
         sliderElement.innerHTML = generatedHTML
-        sliderElement.id = sliderArray[x].id  
-        } 
+        sliderElement.id = sliderArray[x].id
+        }
         for(y = 0; y < difference; y++){
             let index = y + arrayLength
             let generatedHTML = '';
             generatedHTML +=
-       
-       
+
+
         `
         <div class="recipe-image">
                     <img src="${sliderArray[y].image}" alt="" class="recpie-img">
@@ -290,11 +306,11 @@ function renderSlider(){
         }
     } else {
     for(x = 0; x<12; x++){
-        console.log(sliderArray[x])
+
         let generatedHTML = '';
         generatedHTML +=
-       
-       
+
+
         `
         <div class="recipe-image">
                     <img src="${sliderArray[x].image}" alt="" class="recpie-img">
@@ -306,10 +322,10 @@ function renderSlider(){
                 </div>
         `
         const sliderElement = document.getElementById('slider_element_' + x)
-        sliderElement.innerHTML = generatedHTML   
-        sliderElement = sliderArray[x].id
-        }  
-    }   
+        sliderElement.innerHTML = generatedHTML
+        sliderElement.id = sliderArray[x].id
+        }
+    }
 }
 
 
@@ -319,7 +335,7 @@ function renderSlider(){
 const RecipeArray = []
 
 function searchRecipes(query){
-    const apiKey = '&apiKey=3e6f92f2a2dc48c2a6ecb37e0f81d171'
+    const apiKey = '&apiKey=562382aaab84443dbc1270bd67c313a7'
     const url = `https://api.spoonacular.com/recipes/complexSearch?instructionsRequired=true&number=1&query=${query}${apiKey}`
     const food_item_column = document.getElementById('food_item_column')
     const childDivs = food_item_column.getElementsByTagName('div')
@@ -327,15 +343,13 @@ function searchRecipes(query){
     fetch(url)
     .then(response => response.json())
     .then((jsonData) => {
-    
+
         const recipe = jsonData.results
-       
+
         RecipeArray.push(query, recipe)
-        
-        
+
+
         if(RecipeArray.length/2 == childDivLen - 1){
-            console.log(RecipeArray)
-            console.log(childDivLen)
             renderRecipe()
         }
     })
@@ -361,7 +375,7 @@ function renderRecipe(){
                 title_element.innerHTML = recipe_title
             }
         }
-        
+
     }
 }
 
