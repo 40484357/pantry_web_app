@@ -30,6 +30,7 @@ def home():
         days = delta.days
         timeDiff = str(days)
         timeDiffArray.append(timeDiff)
+        print(newdate)
     
     return render_template("home.html", dateDifference=timeDiffArray, user=current_user)
 
@@ -49,6 +50,7 @@ def pantry():
         days = delta.days
         timeDiff = str(days)
         timeDiffArray.append(timeDiff)
+        print(timeDiffArray)
 
     if request.method == 'POST':
         food_title = request.form.get('food_title')

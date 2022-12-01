@@ -13,7 +13,7 @@
         <div class="shopping-item">
             <button class="remove-list"><a href="{{ url_for('delete', item=item.id)}}" style="color: white; text-decoration: none;">remove</a></button>
             <div class="food-item-title-shopping">
-                <input type="text" id="food_title" name="food_title" class="shopping_text" value="{{ item.item }}" disabled="true">
+                <input type="text" id="food_title" name="food_title" class="shopping_text" value="{{ item.item }}" >
             </div>
             <div class="food-item-amount-shopping">
                 <label for="amount">Enter Amount</label>

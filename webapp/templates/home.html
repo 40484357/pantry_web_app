@@ -147,7 +147,7 @@
         <div class="table-column">
             <div class="header-titles">Amount</div>
             {% for food_items in user.food_items | sort(attribute='expiry') %}
-                {% if loop.index <= 4 %}
+                {% if loop.index <= 5 %}
                     <div class="items">{{ food_items.amount }} {{food_items.unit}}</div>
                 {% endif %}
             {% endfor %}
@@ -155,7 +155,7 @@
         <div class="table-column">
             <div class="header-titles">Expiry Date</div>
             {% for food_items in user.food_items | sort(attribute='expiry') %}
-                {% if loop.index <= 4 %}
+                {% if loop.index <= 5 %}
                     <div class="items">{{ food_items.expiry }}</div>
                 {% endif %}
             {% endfor %}
@@ -163,7 +163,7 @@
         <div class="table-column" id="recipe_column">
             <div class="header-titles">Days until expiry</div>
             {% for timeDiff in dateDifference %}
-                {% if loop.index <= 4 %}
+                {% if loop.index <= 5 %}
                     <div class="items">
                     <div style="display: flex;">
                         {{ timeDiff }} days remaining
